@@ -5,6 +5,7 @@
  * - Не забываем чистить таймер
  */
 const NOTIFICATION_DELAY = 3000;
+let timeoutId = null;
 
 const refs = {
   notification: document.querySelector('.js-alert'),
@@ -19,14 +20,14 @@ showNotification();
  */
 function onNotificationClick() {
   hideNotification();
+  clearTimeout(timeoutId);
 }
 
 function showNotification() {
   refs.notification.classList.add('is-visible');
 
-  setTimeout(() => {
-    console.log('закривеємот алерт');
-    // hideNotification();
+  timeoutId = setTimeout(() => {
+    hideNotification();
   }, NOTIFICATION_DELAY);
 }
 
